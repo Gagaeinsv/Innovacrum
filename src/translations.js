@@ -56,7 +56,7 @@ export const translations = {
     // Contacts секція
     contactTitle: 'CONTACTS',
     contactInfo: {
-      phone: '+39 123 456 7890',
+      phone: '+39 327 743 8698',
       email: 'matteosher@gmail.com'
     },
     
@@ -123,7 +123,7 @@ export const translations = {
     // Contacts секція
     contactTitle: 'CONTATTI',
     contactInfo: {
-      phone: '+39 123 456 7890',
+      phone: '+39 327 743 8698',
       email: 'matteosher@gmail.com'
     },
     
