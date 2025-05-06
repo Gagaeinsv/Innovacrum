@@ -1,0 +1,28 @@
+{
+  "name": "my-web-project",
+  "version": "1.0.0",
+  "description": "A web project with a burger menu component.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "live-server src",
+    "build": "webpack --mode production",
+    "test": "jest"
+  },
+  "keywords": [
+    "web",
+    "burger-menu",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "jest": "^26.6.0",
+    "live-server": "^1.2.1"
+  }
+}

@@ -1,35 +1,18 @@
 // src/components/Footer.js
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useResponsiveDetection } from '../hooks/useResponsiveDetection';
 
 const Footer = ({ lang }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Відстеження ширини екрану для адаптивності
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    // Перевірка при завантаженні
-    checkIsMobile();
-    
-    // Додаємо слухач події для перевірки при зміні розміру вікна
-    window.addEventListener('resize', checkIsMobile);
-    
-    // Прибираємо слухач при демонтажі компонента
-    return () => {
-      window.removeEventListener('resize', checkIsMobile);
-    };
-  }, []);
+  const { isMobile, isLandscape } = useResponsiveDetection();
 
   const footerText = lang === 'en' 
     ? '© 2025 Synergia. All rights reserved.'
     : '© 2025 Synergia. Tutti i diritti riservati.';
   
   return (
-    <footer className={`footer ${isMobile ? 'mobile-footer' : ''}`}>
-      <div className={`footer-content ${isMobile ? 'mobile-footer-content' : ''}`}>
-        <p className={isMobile ? 'mobile-footer-text' : ''}>
+    <footer className={`footer ${isMobile ? 'mobile-footer' : ''} ${isLandscape ? 'landscape-footer' : ''}`}>
+      <div className={`footer-content ${isMobile ? 'mobile-footer-content' : ''} ${isLandscape ? 'landscape-footer-content' : ''}`}>
+        <p className={`footer-text ${isMobile ? 'mobile-footer-text' : ''} ${isLandscape ? 'landscape-footer-text' : ''}`}>
           {footerText}
         </p>
       </div>

@@ -665,4 +665,101 @@
   .mobile-header {
     display: none;
   }
+}/* Add to MobileStyles.css or create a new LandscapeStyles.css */
+
+@media screen and (orientation: landscape) and (max-width: 1024px) {
+  /* General styles for landscape mode */
+  .landscape-container {
+    flex-direction: row;
+    padding: 0 20px;
+  }
+  
+  /* Hero Section styles */
+  .landscape-about-section {
+    padding: 60px 0;
+  }
+  
+  .landscape-about-blocks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .landscape-about-block {
+    flex: 0 0 45%;
+    margin: 10px;
+  }
+  
+  /* Header adjustments for landscape */
+  .landscape-header {
+    height: 60px;
+    padding: 10px 20px;
+  }
+  
+  /* Modal styles for landscape */
+  .landscape-modal-content {
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .landscape-form-group {
+    margin-bottom: 10px;
+  }
+  
+  .landscape-form-input,
+  .landscape-form-textarea {
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .landscape-form-textarea {
+    min-height: 60px;
+  }
+  
+  /* Contact grid for landscape */
+  .landscape-contact-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .landscape-contact-column {
+    flex: 1 0 30%;
+    padding: 0 10px;
+  }
+  
+  /* Footer adjustments */
+  .landscape-footer {
+    padding: 15px 0;
+    margin-bottom: 0;
+  }
+  
+  /* Innovation Section styles */
+  .landscape-innovation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 15px;
+  }
+  
+  /* Partnership section styles */
+  .landscape-partners-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    padding: 15px 0;
+  }
+  
+  .landscape-partner-link {
+    flex: 0 0 auto;
+    margin: 0 10px;
+    max-width: 120px;
+  }
 }

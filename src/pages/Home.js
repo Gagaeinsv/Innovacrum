@@ -1,5 +1,5 @@
 // src/pages/Home.js
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HeroSection from '../components/HeroSection';
@@ -8,17 +8,15 @@ import PortfolioSection from '../components/PortfolioSection';
 import InnovationSection from '../components/InnovationSection';
 import PartnershipSection from '../components/PartnershipSection';
 import ContactSection from '../components/ContactSection';
+// Remove this import if you're using the burger menu in Header
+// import MobileNavigation from '../components/MobileNavigation';
 
 const Home = ({ lang, toggleLanguage }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
     <div className="App">
       <Header 
         lang={lang} 
-        toggleLanguage={toggleLanguage} 
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
+        toggleLanguage={toggleLanguage}
       />
       <main>
         <HeroSection lang={lang} />
@@ -29,6 +27,8 @@ const Home = ({ lang, toggleLanguage }) => {
         <ContactSection lang={lang} />
       </main>
       <Footer lang={lang} />
+      {/* Remove this if you're using the burger menu in Header */}
+      {/* <MobileNavigation lang={lang} /> */}
     </div>
   );
 };

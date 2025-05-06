@@ -1,7 +1,9 @@
 // src/components/ScrollUpButton.js
 import React, { useState, useEffect } from 'react';
+import { useResponsiveDetection } from '../hooks/useResponsiveDetection';
 
 const ScrollUpButton = () => {
+  const { isMobile, isLandscape } = useResponsiveDetection();
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -25,7 +27,10 @@ const ScrollUpButton = () => {
   }, []);
 
   return (
-    <div className={`scroll-to-top ${isVisible ? 'visible' : ''}`} onClick={scrollToTop}>
+    <div 
+      className={`scroll-to-top ${isVisible ? 'visible' : ''} ${isMobile ? 'mobile-scroll-to-top' : ''} ${isLandscape ? 'landscape-scroll-to-top' : ''}`} 
+      onClick={scrollToTop}
+    >
       <span style={{ fontSize: '24px', fontWeight: 'bold' }}>&#8593;</span>
     </div>
   );

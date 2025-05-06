@@ -3,29 +3,31 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-// Removed unused 'translations' import
+import MobileNavigation from '../components/MobileNavigation';
+import { useResponsiveDetection } from '../hooks/useResponsiveDetection';
 
-// Список всіх проектів для навігації
+// List of all projects for navigation
 const portfolioProjects = [
   "edilitalia",
-  // Додайте тут ID інших проектів, коли вони будуть готові
+  // Add IDs of other projects when they are ready
   "project2",
   "project3"
 ];
 
 const PortfolioDetail = ({ lang, toggleLanguage }) => {
+  const { isMobile, isLandscape } = useResponsiveDetection();
   const [menuOpen, setMenuOpen] = useState(false);
   const { projectId } = useParams();
   const navigate = useNavigate();
   
-  // Функція для переходу до наступного проекту
+  // Function to navigate to the next project
   const goToNextProject = () => {
     const currentIndex = portfolioProjects.indexOf(projectId);
     const nextIndex = (currentIndex + 1) % portfolioProjects.length;
     navigate(`/portfolio/${portfolioProjects[nextIndex]}`);
   };
 
-  // Проект Edilitalia
+  // Edilitalia Case Study
   const edilitaliaCaseStudy = {
     en: {
       title: "EDILITALIA PROJECT",
@@ -129,43 +131,43 @@ const PortfolioDetail = ({ lang, toggleLanguage }) => {
     }
   };
 
-  // Встановлюємо заголовок документа
+  // Set document title
   useEffect(() => {
     document.title = lang === 'en' ? 'Edilitalia Project - Matteo' : 'Progetto Edilitalia - Matteo';
   }, [lang]);
 
   return (
-    <div className="App">
+    <div className={`App ${isMobile ? 'mobile-app' : ''} ${isLandscape ? 'landscape-app' : ''}`}>
       <Header 
         lang={lang} 
         toggleLanguage={toggleLanguage} 
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
       />
-      <main>
-        <section className="section portfolio-detail-section">
-          <div className="container portfolio-detail-container">
-            <h1 className="portfolio-detail-title">
+      <main className={`${isMobile ? 'mobile-main' : ''} ${isLandscape ? 'landscape-main' : ''}`}>
+        <section className={`section portfolio-detail-section ${isMobile ? 'mobile-portfolio-detail-section' : ''} ${isLandscape ? 'landscape-portfolio-detail-section' : ''}`}>
+          <div className={`container portfolio-detail-container ${isMobile ? 'mobile-portfolio-detail-container' : ''} ${isLandscape ? 'landscape-portfolio-detail-container' : ''}`}>
+            <h1 className={`portfolio-detail-title ${isMobile ? 'mobile-portfolio-detail-title' : ''} ${isLandscape ? 'landscape-portfolio-detail-title' : ''}`}>
               {edilitaliaCaseStudy[lang].title}
             </h1>
             
-            <div className="portfolio-detail-subtitle">
-              <h2>{edilitaliaCaseStudy[lang].subtitle}</h2>
+            <div className={`portfolio-detail-subtitle ${isMobile ? 'mobile-portfolio-detail-subtitle' : ''} ${isLandscape ? 'landscape-portfolio-detail-subtitle' : ''}`}>
+              <h2 className={`${isMobile ? 'mobile-portfolio-detail-subtitle-text' : ''} ${isLandscape ? 'landscape-portfolio-detail-subtitle-text' : ''}`}>{edilitaliaCaseStudy[lang].subtitle}</h2>
             </div>
             
-            <div className="portfolio-detail-content">
+            <div className={`portfolio-detail-content ${isMobile ? 'mobile-portfolio-detail-content' : ''} ${isLandscape ? 'landscape-portfolio-detail-content' : ''}`}>
               {edilitaliaCaseStudy[lang].sections.map((section, index) => (
-                <div key={index} className="portfolio-detail-section">
-                  <h3 className="portfolio-detail-section-title">{section.title}</h3>
+                <div key={index} className={`portfolio-detail-section ${isMobile ? 'mobile-portfolio-detail-section' : ''} ${isLandscape ? 'landscape-portfolio-detail-section' : ''}`}>
+                  <h3 className={`portfolio-detail-section-title ${isMobile ? 'mobile-portfolio-detail-section-title' : ''} ${isLandscape ? 'landscape-portfolio-detail-section-title' : ''}`}>{section.title}</h3>
                   
                   {section.content && (
-                    <p className="portfolio-detail-section-content">{section.content}</p>
+                    <p className={`portfolio-detail-section-content ${isMobile ? 'mobile-portfolio-detail-section-content' : ''} ${isLandscape ? 'landscape-portfolio-detail-section-content' : ''}`}>{section.content}</p>
                   )}
                   
                   {section.bulletPoints && (
-                    <ul className="portfolio-detail-bullet-list">
+                    <ul className={`portfolio-detail-bullet-list ${isMobile ? 'mobile-portfolio-detail-bullet-list' : ''} ${isLandscape ? 'landscape-portfolio-detail-bullet-list' : ''}`}>
                       {section.bulletPoints.map((point, pointIndex) => (
-                        <li key={pointIndex} className="portfolio-detail-bullet-item">{point}</li>
+                        <li key={pointIndex} className={`portfolio-detail-bullet-item ${isMobile ? 'mobile-portfolio-detail-bullet-item' : ''} ${isLandscape ? 'landscape-portfolio-detail-bullet-item' : ''}`}>{point}</li>
                       ))}
                     </ul>
                   )}
@@ -173,9 +175,12 @@ const PortfolioDetail = ({ lang, toggleLanguage }) => {
               ))}
             </div>
             
-            {/* Кнопка Next */}
-            <div className="portfolio-navigation">
-              <button className="portfolio-next-button" onClick={goToNextProject}>
+            {/* Next button */}
+            <div className={`portfolio-navigation ${isMobile ? 'mobile-portfolio-navigation' : ''} ${isLandscape ? 'landscape-portfolio-navigation' : ''}`}>
+              <button 
+                className={`portfolio-next-button ${isMobile ? 'mobile-portfolio-next-button' : ''} ${isLandscape ? 'landscape-portfolio-next-button' : ''}`} 
+                onClick={goToNextProject}
+              >
                 {lang === 'en' ? 'Next Project' : 'Progetto Successivo'} →
               </button>
             </div>
@@ -183,6 +188,7 @@ const PortfolioDetail = ({ lang, toggleLanguage }) => {
         </section>
       </main>
       <Footer lang={lang} />
+     
     </div>
   );
 };

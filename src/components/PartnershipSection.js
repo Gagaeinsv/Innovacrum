@@ -6,9 +6,12 @@ import a2comLogo from '../assets/22com.png';
 import tooDigitalLogo from '../assets/toodigital.png';
 import gimLogo from '../assets/gim.png';
 import ixlLogo from '../assets/ixl.png';
+import { useResponsiveDetection } from '../hooks/useResponsiveDetection';
 
 const PartnershipSection = ({ lang }) => {
-  // Масив партнерів з їх URL, зображенням та alt текстом
+  const { isMobile, isLandscape } = useResponsiveDetection();
+  
+  // Array of partners with their URL, image, and alt text
   const partners = [
     {
       logo: n8nLogo,
@@ -38,22 +41,22 @@ const PartnershipSection = ({ lang }) => {
   ];
 
   return (
-    <section id="partnership" className="section partnership-section">
-      <div className="container">
-        <h2>{translations[lang].partnershipTitle}</h2>
-        <div className="partners-container">
+    <section id="partnership" className={`section partnership-section ${isMobile ? 'mobile-partnership-section' : ''} ${isLandscape ? 'landscape-partnership-section' : ''}`}>
+      <div className={`container ${isMobile ? 'mobile-container' : ''} ${isLandscape ? 'landscape-container' : ''}`}>
+        <h2 className={`${isMobile ? 'mobile-section-title' : ''} ${isLandscape ? 'landscape-section-title' : ''}`}>{translations[lang].partnershipTitle}</h2>
+        <div className={`partners-container ${isMobile ? 'mobile-partners-container' : ''} ${isLandscape ? 'landscape-partners-container' : ''}`}>
           {partners.map((partner, index) => (
             <a 
               key={index} 
               href={partner.url} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="partner-link"
+              className={`partner-link ${isMobile ? 'mobile-partner-link' : ''} ${isLandscape ? 'landscape-partner-link' : ''}`}
             >
               <img 
                 src={partner.logo} 
                 alt={partner.alt} 
-                className="partner-logo" 
+                className={`partner-logo ${isMobile ? 'mobile-partner-logo' : ''} ${isLandscape ? 'landscape-partner-logo' : ''}`} 
               />
             </a>
           ))}
