@@ -1,4 +1,4 @@
-// src/pages/Manifesto.js (this should be a page, not just a component)
+// src/pages/Manifesto.js
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -64,7 +64,42 @@ const Manifesto = ({ lang, toggleLanguage }) => {
           title: 'OLTRE IL RIFLESSO, VERSO L\'AUTENTICITÀ',
           content: 'Il nostro mondo contemporaneo è inondato di "specchi" e rappresentazioni che spesso perdono il loro legame con la realtà. In Innovacrum, crediamo che l\'innovazione non debba limitarsi a un gioco di riflessi o a meri simulacri autoreferenziali. Al contrario, deve servire a rompere questi specchi e riconnettersi con i bisogni umani più profondi.'
         },
-        // Add other Italian sections...
+        {
+          title: 'RICONOSCERE IL POTERE DEL SIMULACRO',
+          content: 'Riconosciamo che, oggi, i segni sembrano avere vita propria, generando una iperrealtà in cui diventa difficile distinguere tra ciò che è reale e ciò che non lo è. Innovacrum abbraccia questa consapevolezza non per arrendersi ma per utilizzarla come trampolino per la (ri)scoperta: sfruttando il potere dei simulacri per creare qualcosa di veramente nuovo, investito di un senso più alto di scopo.'
+        },
+        {
+          title: 'L\'INNOVAZIONE COME ATTO CULTURALE',
+          content: 'Per noi, l\'innovazione non è semplicemente tecnologia; è cultura vivente. È la capacità di unire visione e comprensione per guidare trasformazioni tangibili nelle nostre abitudini, comportamenti e istituzioni. Innovare significa cogliere il presente e immaginare il futuro, senza perdere di vista la dignità umana e i bisogni essenziali di coloro che ci seguiranno.'
+        },
+        {
+          title: 'ROMPERE GLI SPECCHI COME ATTO CREATIVO',
+          content: 'Rompere gli specchi non significa distruggere il mondo delle immagini ma piuttosto ridefinirlo. Significa andare oltre la semplice fascinazione per l\'iperrealtà per far emergere segni che riflettono un bisogno profondo, genuino e collettivo. Questo è un atto di coraggio che comporta responsabilità e cura l\'uno per l\'altro.'
+        },
+        {
+          title: 'UN NUOVO ORDINE DI SEGNI',
+          content: 'Innovacrum aspira a costruire un nuovo quadro simbolico dove la ricerca di significato è fondamentale. Il nostro obiettivo è creare prodotti, servizi, esperienze e narrazioni che non siano vuoti esercizi estetici ma forme di linguaggio capaci di incontrare - e persino anticipare - i bisogni reali di individui e comunità.'
+        },
+        {
+          title: 'ETICA E RESPONSABILITÀ SOCIALE',
+          content: 'L\'innovazione deve assumersi la responsabilità delle sue conseguenze. Crediamo che questo "nuovo ordine di segni" possa emergere solo se consideriamo il benessere collettivo, la protezione dell\'ambiente e la promozione di una cultura inclusiva. Ogni passo innovativo deve essere contemplato in termini di impatto e valore condiviso.'
+        },
+        {
+          title: 'LA CONOSCENZA COME MEZZO PER CREARE',
+          content: 'Innovacrum si basa sulla conoscenza attiva: studiare, osservare e coinvolgere coloro che già sperimentano nuove forme di innovazione; ma anche mettere in pratica idee audaci, prototipandole e condividendo i risultati. La conoscenza non è un accumulo sterile ma uno strumento per generare nuovi mondi, nuove "stanze del pensiero" dove possiamo collettivamente immaginare soluzioni.'
+        },
+        {
+          title: 'DALL\'IPERREALTÀ ALLA VERITÀ DELL\'UMANITÀ',
+          content: 'Il nostro obiettivo non è mettere in scena una "iperrealtà" più accattivante o seducente, ma restituire profondità a ciò che è reale approfondendo i bisogni essenziali dell\'essere umano, come l\'empatia, il rispetto, la crescita culturale e il benessere comunitario. In questo modo, l\'innovazione cessa di essere un sogno distaccato e diventa un percorso di evoluzione umana.'
+        },
+        {
+          title: 'COLLABORAZIONE E CO-CREAZIONE',
+          content: 'Invitiamo chiunque condivida questa ricerca di significato a unirsi a noi. Innovacrum è aperta, inclusiva e crede fortemente nel lavoro di squadra: insieme, possiamo sviluppare pratiche, linguaggi, strumenti e metodologie che ci avvicinino a questo "nuovo autentico", superando le barriere della frammentazione e della competizione infruttuosa.'
+        },
+        {
+          title: 'VERSO UN FUTURO DI SIGNIFICATO',
+          content: 'Il futuro che immaginiamo non è semplicemente un mondo più "confortevole" in termini materiali, ma uno in cui l\'innovazione è sinonimo di responsabilità culturale, dove le persone si sentono protagoniste del cambiamento piuttosto che semplici spettatori. Rompere gli specchi significa anche avere il coraggio di guardare oltre le illusioni, riconoscendo dentro di noi il potere di fare la differenza.'
+        }
       ],
       footer: 'Con Innovacrum, affermiamo il nostro diritto (e dovere) di plasmare una realtà che non si limiti a riprodurre vecchi modelli, ma osi creare nuovi significati, nuovi linguaggi e una nuova etica condivisa. Per un\'innovazione che, oltre ad essere "nuova", sia vera e umana.'
     }
@@ -75,7 +110,6 @@ const Manifesto = ({ lang, toggleLanguage }) => {
 
   return (
     <div className={`App ${isMobile ? 'mobile-app' : ''} ${isLandscape ? 'landscape-app' : ''}`}>
-      {/* Add Header component here */}
       <Header 
         lang={lang} 
         toggleLanguage={toggleLanguage}
@@ -97,7 +131,7 @@ const Manifesto = ({ lang, toggleLanguage }) => {
             <p className={`manifesto-footer ${isMobile ? 'mobile-manifesto-footer' : ''} ${isLandscape ? 'landscape-manifesto-footer' : ''}`}>{currentLangData.footer}</p>
             
             <div className={`manifesto-copyright ${isMobile ? 'mobile-manifesto-copyright' : ''} ${isLandscape ? 'landscape-manifesto-copyright' : ''}`}>
-            
+              © {new Date().getFullYear()} Synergia. All rights reserved.
             </div>
           </div>
         </div>

@@ -8,8 +8,6 @@ import PortfolioSection from '../components/PortfolioSection';
 import InnovationSection from '../components/InnovationSection';
 import PartnershipSection from '../components/PartnershipSection';
 import ContactSection from '../components/ContactSection';
-// Remove this import if you're using the burger menu in Header
-// import MobileNavigation from '../components/MobileNavigation';
 
 const Home = ({ lang, toggleLanguage }) => {
   return (
@@ -27,8 +25,6 @@ const Home = ({ lang, toggleLanguage }) => {
         <ContactSection lang={lang} />
       </main>
       <Footer lang={lang} />
-      {/* Remove this if you're using the burger menu in Header */}
-      {/* <MobileNavigation lang={lang} /> */}
     </div>
   );
 };

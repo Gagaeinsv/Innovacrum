@@ -9,17 +9,30 @@ import ScrollToTop from './components/ScrollToTop';
 import ScrollUpButton from './components/ScrollUpButton';
 import './styles.css';
 
-// Set document language to override browser defaults
-document.documentElement.lang = "en";
+// Set document language to Italian by default
+document.documentElement.lang = "it";
 
 function App() {
-  const [lang, setLang] = useState('en');
+  // Set Italian as the default language
+  const [lang, setLang] = useState('it');
   
   const toggleLanguage = () => {
     const newLang = lang === 'en' ? 'it' : 'en';
     setLang(newLang);
     document.documentElement.lang = newLang;
   };
+
+  // Add meta tag for language
+  useEffect(() => {
+    const meta = document.createElement('meta');
+    meta.setAttribute('http-equiv', 'Content-Language');
+    meta.setAttribute('content', lang);
+    document.head.appendChild(meta);
+
+    return () => {
+      document.head.removeChild(meta);
+    };
+  }, [lang]);
 
   return (
     <BrowserRouter>

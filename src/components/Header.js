@@ -40,112 +40,95 @@ const Header = ({ lang, toggleLanguage }) => {
     setIsMenuOpen(false);
   }, [location.pathname]);
   
-  // Lock body scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMenuOpen]);
-  
   return (
-    <>
-      <header className="header">
-        <div className="header-left">
-          <a 
-            href="/" 
-            className="home-icon"
-            onClick={handleHomeClick}
-          >
-            <img src={homeIcon} alt="Home" />
-          </a>
-        </div>
-        
-        <div className="header-right">
-          <button 
-            className={`burger-button ${isMenuOpen ? 'active' : ''}`}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </header>
-      
-      {/* Mobile Menu Overlay */}
-      <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`}>
-        <div className="mobile-menu-content">
-          <nav className="mobile-nav">
-            <ul className="mobile-nav-list">
-              <li>
-                {isHomePage ? (
-                  <a href="#about" onClick={handleNavClick}>{translations[lang].aboutTitle || 'ABOUT ME'}</a>
-                ) : (
-                  <Link to="/#about" onClick={handleNavClick}>{translations[lang].aboutTitle || 'ABOUT ME'}</Link>
-                )}
-              </li>
-              <li>
-                <Link 
-                  to="/manifesto" 
-                  onClick={handleNavClick}
-                  className={location.pathname === '/manifesto' ? 'active-link' : ''}
-                >
-                  {translations[lang].manifestoTitle || 'MANIFESTO'}
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  to="/portfolio/edilitalia" 
-                  onClick={handleNavClick}
-                  className={location.pathname.includes('/portfolio') ? 'active-link' : ''}
-                >
-                  {translations[lang].portfolioTitle || 'PORTFOLIO'}
-                </Link>
-              </li>
-              <li>
-                {isHomePage ? (
-                  <a href="#contact" onClick={handleNavClick}>{translations[lang].contactTitle || 'CONTACTS'}</a>
-                ) : (
-                  <Link to="/#contact" onClick={handleNavClick}>{translations[lang].contactTitle || 'CONTACTS'}</Link>
-                )}
-              </li>
-            </ul>
-            
-            {/* Language Toggle */}
-            <div className="menu-lang-toggle">
-              <button 
-                className={`lang-button ${lang === 'en' ? 'active' : ''}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (lang !== 'en') toggleLanguage();
-                  handleNavClick();
-                }}
-              >
-                ENG
-              </button>
-              <span className="lang-separator">|</span>
-              <button 
-                className={`lang-button ${lang === 'it' ? 'active' : ''}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (lang !== 'it') toggleLanguage();
-                  handleNavClick();
-                }}
-              >
-                ITAL
-              </button>
-            </div>
-          </nav>
-        </div>
+    <header className="header">
+      <div className="header-left">
+        <a 
+          href="/" 
+          className="home-icon"
+          onClick={handleHomeClick}
+        >
+          <img src={homeIcon} alt="Home" />
+        </a>
       </div>
-    </>
+      
+      <div className="header-right">
+        <button 
+          className={`burger-button ${isMenuOpen ? 'active' : ''}`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      
+      {/* Mobile Menu - точно як на скріншоті */}
+      <div className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+        <nav className="mobile-nav">
+          <ul className="mobile-nav-list">
+            <li>
+              {isHomePage ? (
+                <a href="#about" onClick={handleNavClick}>{lang === 'en' ? 'About me' : 'Chi sono'}</a>
+              ) : (
+                <Link to="/#about" onClick={handleNavClick}>{lang === 'en' ? 'About me' : 'Chi sono'}</Link>
+              )}
+            </li>
+            <li>
+              <Link 
+                to="/portfolio/edilitalia" 
+                onClick={handleNavClick}
+                className={location.pathname.includes('/portfolio') ? 'active-link' : ''}
+              >
+                {lang === 'en' ? 'Portfolio' : 'Portfolio'}
+              </Link>
+            </li>
+            <li>
+              {isHomePage ? (
+                <a href="#contact" onClick={handleNavClick}>{lang === 'en' ? 'Contacts' : 'Contatti'}</a>
+              ) : (
+                <Link to="/#contact" onClick={handleNavClick}>{lang === 'en' ? 'Contacts' : 'Contatti'}</Link>
+              )}
+            </li>
+            <li>
+              <Link 
+                to="/manifesto" 
+                onClick={handleNavClick}
+                className={location.pathname === '/manifesto' ? 'active-link' : ''}
+              >
+                {lang === 'en' ? 'Manifesto' : 'Manifesto'}
+              </Link>
+            </li>
+          </ul>
+          
+          {/* Language Toggle */}
+          <div className="menu-lang-toggle">
+            <button 
+              className={`lang-button ${lang === 'en' ? 'active' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (lang !== 'en') toggleLanguage();
+                handleNavClick();
+              }}
+            >
+              Eng
+            </button>
+            <span className="lang-separator">   </span>
+            <button 
+              className={`lang-button ${lang === 'it' ? 'active' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (lang !== 'it') toggleLanguage();
+                handleNavClick();
+              }}
+            >
+              Ital
+            </button>
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 };
 

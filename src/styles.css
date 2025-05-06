@@ -3398,4 +3398,322 @@ main {
 }/* Hide the unwanted duplicate partnership section that appears after About section */
 #about + #partnership {
   display: none !important;
+}/* Додайте це до вашого CSS-файлу */
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.95);
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.mobile-nav {
+  width: 100%;
+  max-width: 400px;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.mobile-nav-list li {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.mobile-nav-list li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  display: block;
+  padding: 8px 0;
+  transition: color 0.3s;
+}
+
+.mobile-nav-list li a:hover,
+.mobile-nav-list li a.active-link {
+  color: #00ff00;
+}
+
+/* Burger Button */
+.burger-button {
+  width: 30px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.burger-button span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.burger-button.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.burger-button.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-button.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Language Toggle */
+.menu-lang-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.lang-button {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.lang-button.active {
+  color: #00ff00;
+  font-weight: 600;
+}
+
+.lang-separator {
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 5px;
+}/* Styles for Portfolio Section */
+.portfolio-section {
+  padding: 80px 0;
+  background-color: #0c0c0e;
+}
+
+.portfolio-card {
+  background-color: #1a1a24;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 15px;
+}
+
+.active-card {
+  width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.card-content {
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.card-content h3 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.see-more-link {
+  color: #00ff00;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  margin-top: auto;
+  transition: color 0.3s;
+}
+
+.see-more-link:hover {
+  color: #80ff80;
+}
+
+/* Mobile Portfolio Styles */
+.mobile-project {
+  background-color: #1a1a24;
+  border-radius: 20px;
+  margin: 0 20px 20px;
+  overflow: hidden;
+  padding: 25px;
+  border: 1px solid rgba(0, 255, 0, 0.1);
+}
+
+.project-content {
+  text-align: center;
+}
+
+.project-content h3 {
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.project-content p {
+  color: #cccccc;
+  margin-bottom: 20px;
+}
+
+/* Helper classes */
+.d-none {
+  display: none !important;
+}
+
+.portfolio-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}/* Стилі для розділу Portfolio згідно з макетом */
+.portfolio-section {
+  padding: 80px 0;
+  background-color: #0c0c0e;
+}
+
+.section-title {
+  color: #00ff00;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.portfolio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.portfolio-card {
+  background-color: #1a1a24;
+  border-radius: 12px;
+  width: 300px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.portfolio-project-title {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.see-more-link {
+  color: #00ff00;
+  text-decoration: none;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s;
+}
+
+.see-more-link:hover {
+  color: #00cc00;
+}
+
+.nav-arrow {
+  background: transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.nav-arrow:hover {
+  transform: scale(1.2);
+}
+
+/* Мобільна версія */
+@media screen and (max-width: 768px) {
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .portfolio-container {
+    gap: 10px;
+  }
+  
+  .portfolio-card {
+    width: 200px;
+    height: 100px;
+    padding: 15px;
+  }
+  
+  .portfolio-project-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .see-more-link {
+    font-size: 14px;
+  }
+  
+  .nav-arrow {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Ландшафтна версія для мобільних */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .portfolio-container {
+    flex-direction: row;
+  }
+  
+  .portfolio-card {
+    width: 250px;
+  }
 }
