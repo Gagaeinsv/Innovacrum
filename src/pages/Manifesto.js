@@ -97,7 +97,7 @@ const Manifesto = ({ lang, toggleLanguage }) => {
             <p className={`manifesto-footer ${isMobile ? 'mobile-manifesto-footer' : ''} ${isLandscape ? 'landscape-manifesto-footer' : ''}`}>{currentLangData.footer}</p>
             
             <div className={`manifesto-copyright ${isMobile ? 'mobile-manifesto-copyright' : ''} ${isLandscape ? 'landscape-manifesto-copyright' : ''}`}>
-              © {new Date().getFullYear()} Synergia. All rights reserved.
+            
             </div>
           </div>
         </div>

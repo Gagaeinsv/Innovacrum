@@ -1,5 +1,5 @@
-// src/components/PartnershipSection.js
-import React from 'react';
+// src/components/PartnershipSection.js - Updated version
+import React, { useEffect } from 'react';
 import { translations } from '../translations';
 import n8nLogo from '../assets/n8n.png';
 import a2comLogo from '../assets/22com.png';
@@ -11,7 +11,21 @@ import { useResponsiveDetection } from '../hooks/useResponsiveDetection';
 const PartnershipSection = ({ lang }) => {
   const { isMobile, isLandscape } = useResponsiveDetection();
   
-  // Array of partners with their URL, image, and alt text
+  // Add debug logging
+  useEffect(() => {
+    console.log('PartnershipSection rendered');
+    
+    // Count how many partnership sections are in the DOM
+    const partnershipSections = document.querySelectorAll('.partnership-section');
+    console.log(`Number of partnership sections: ${partnershipSections.length}`);
+    
+    // Add a unique class to this instance
+    const currentSection = document.getElementById('partnership');
+    if (currentSection) {
+      currentSection.classList.add('main-partnership-section');
+    }
+  }, []);
+  
   const partners = [
     {
       logo: n8nLogo,
@@ -41,7 +55,7 @@ const PartnershipSection = ({ lang }) => {
   ];
 
   return (
-    <section id="partnership" className={`section partnership-section ${isMobile ? 'mobile-partnership-section' : ''} ${isLandscape ? 'landscape-partnership-section' : ''}`}>
+    <section id="partnership" className={`section partnership-section unique-partnership-section ${isMobile ? 'mobile-partnership-section' : ''} ${isLandscape ? 'landscape-partnership-section' : ''}`}>
       <div className={`container ${isMobile ? 'mobile-container' : ''} ${isLandscape ? 'landscape-container' : ''}`}>
         <h2 className={`${isMobile ? 'mobile-section-title' : ''} ${isLandscape ? 'landscape-section-title' : ''}`}>{translations[lang].partnershipTitle}</h2>
         <div className={`partners-container ${isMobile ? 'mobile-partners-container' : ''} ${isLandscape ? 'landscape-partners-container' : ''}`}>

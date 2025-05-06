@@ -3387,4 +3387,15 @@ main {
 .lang-separator {
   color: rgba(255, 255, 255, 0.4);
   margin: 0 8px;
+}/* Add to your CSS file temporarily */
+.partnership-section:nth-of-type(1) {
+  display: none !important;
+}
+
+/* Or alternatively, use this if there's an ID conflict */
+#partnership:nth-of-type(1) {
+  display: none !important;
+}/* Hide the unwanted duplicate partnership section that appears after About section */
+#about + #partnership {
+  display: none !important;
 }
