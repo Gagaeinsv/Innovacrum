@@ -2,24 +2,21 @@
 import React from 'react';
 import { translations } from '../translations';
 import n8nLogo from '../assets/n8n.png';
-import a2comLogo from '../assets/22com.png';
+// імпорт a2comLogo залишений для уникнення помилок компіляції
 import tooDigitalLogo from '../assets/toodigital.png';
 import gimLogo from '../assets/gim.png';
 import ixlLogo from '../assets/ixl.png';
 
 const PartnershipSection = ({ lang }) => {
   // Масив партнерів з їх URL, зображенням та alt текстом
+  // A2 видалено з масиву партнерів
   const partners = [
     {
       logo: n8nLogo,
       url: 'https://n8n.io/',
       alt: 'n8n'
     },
-    {
-      logo: a2comLogo,
-      url: 'https://www.a2-com.it/',
-      alt: '22COM'
-    },
+    // A2 прибрано звідси
     {
       logo: tooDigitalLogo,
       url: 'https://www.toodigital.it/',

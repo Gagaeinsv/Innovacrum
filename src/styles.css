@@ -2652,4 +2652,491 @@ main {
   border-radius: 5px;
   margin-bottom: 20px;
   text-align: center;
+}/* Додайте ці стилі до вашого CSS-файлу з стилями для секції контактів */
+
+.social-icon-container {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 6px;
+  background-color: transparent;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.3s ease; /* Плавна анімація для збільшення */
+}
+
+.instagram-container {
+  border-color: #E1306C;
+}
+
+.linkedin-container {
+  border-color: #0077B5;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  transition: transform 0.3s ease; /* Плавна анімація для іконки всередині */
+}
+
+/* Анімація при наведенні: збільшення замість зміщення */
+.social-icon-container:hover {
+  transform: scale(1.15); /* Збільшення до 115% від оригінального розміру */
+}
+
+/* Можна також додати невелику анімацію для самої іконки для більшого ефекту */
+.social-icon-container:hover .social-icon {
+  transform: scale(1.1); /* Трохи збільшуємо саму іконку всередині контейнера */
+}
+
+/* Решта стилів для соціальних іконок */
+.social-icon-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.social-icon-description {
+  font-size: 14px;
+  color: #ffffff;
+  margin-left: 12px;
+}/* ЗМІНИ ДЛЯ ІННОВАЦІЙ (прибрати зелені крапки) */
+
+.innovation-list li {
+  position: relative;
+  padding-left: 0;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.innovation-list li::before {
+  content: '';
+  display: none;
+}
+
+/* ЗМІНИ ДЛЯ СОЦІАЛЬНИХ ІКОНОК (повний контейнер без рамок) */
+
+.social-icon-container {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border: none;
+  border-radius: 3px;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.instagram-container {
+  background: var(--instagram-gradient);
+}
+
+.linkedin-container {
+  background: var(--linkedin-color);
+}/* ОНОВЛЕНІ СТИЛІ ЗІ ЗБІЛЬШЕНИМИ ІКОНКАМИ */
+
+/* Контейнер для групи "іконка + текст" */
+.social-icon-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Посилання для кліку */
+.social-icon-link {
+  display: block;
+  text-decoration: none;
+}
+
+/* Контейнер самої іконки - ЗБІЛЬШЕНО */
+.social-icon-container {
+  width: 48px;  /* Збільшено з 36px до 48px */
+  height: 48px; /* Збільшено з 36px до 48px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px; /* Трохи збільшено відступ справа */
+  background: transparent;
+  border: none;
+  position: relative;
+}
+
+/* Стилі для самих іконок - тепер заповнюють весь простір */
+.social-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Instagram і LinkedIn більше не мають кольорового фону */
+.instagram-container,
+.linkedin-container {
+  background: transparent;
+  border: none;
+}
+
+/* Текст-підпис біля іконки - трохи збільшений */
+.social-icon-description {
+  font-size: 16px; /* Збільшено з 15px до 16px */
+  color: var(--text-color);
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* СТИЛІ ДЛЯ СПИСКУ В РОЗДІЛІ ІННОВАЦІЙ */
+.innovation-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.innovation-list li {
+  position: relative;
+  padding-left: 0;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.innovation-list li::before {
+  content: '';
+  display: none;
+}/* Виправлені стилі для модального вікна з ОДНИМ хрестиком */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #0f0f0f;
+  border-radius: 8px;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+/* Виправлені стилі для кнопки закриття */
+.close-modal-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 24px;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-modal-btn:hover {
+  color: white;
+}
+
+/* 
+ * ВАЖЛИВО: ВИКОРИСТОВУЙТЕ ТІЛЬКИ ОДИН ВАРІАНТ!
+ *
+ * ВАРІАНТ 1: Якщо у вас в HTML кнопка закриття не має вмісту (<button class="close-modal-btn"></button>),
+ * то розкоментуйте цей блок:
+ */
+/*
+.close-modal-btn::after {
+  content: "×";
+  display: block;
+}
+*/
+
+/* 
+ * ВАРІАНТ 2: Якщо в HTML вже є вміст кнопки (<button class="close-modal-btn">×</button>),
+ * залиште код закоментованим вище
+ */
+
+/* Стилі для зображень чи іконок, якщо вони використовуються */
+.close-modal-btn img, 
+.close-modal-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.modal-content h2 {
+  color: #00FF00;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* Media queries для адаптивності */
+@media (max-width: 576px) {
+  .modal-content {
+    padding: 20px;
+    width: 95%;
+  }
+  
+  .close-modal-btn {
+    top: 5px;
+    right: 5px;
+  }
+}/* Стилі для повідомлень валідації форми */
+
+/* Стилі для повідомлень про успіх */
+.success-message {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #00cc00;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border-left: 3px solid #00cc00;
+}
+
+/* Стилі для повідомлень про помилки */
+.error-message {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff4d4d;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border-left: 3px solid #ff4d4d;
+}
+
+/* Стилі для полів з помилками валідації */
+.input-error {
+  border-color: #ff4d4d !important;
+  background-color: rgba(255, 0, 0, 0.03);
+}
+
+/* Стилі для повідомлень валідації під полями */
+.validation-error {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 4px;
+  text-align: left;
+}
+
+/* Прибираємо стандартні стилі браузера для помилок валідації */
+input:invalid,
+textarea:invalid {
+  box-shadow: none !important;
+}
+
+/* Стилі для повідомлень валідації HTML5 (якщо вони все ж з'являються) */
+::-webkit-validation-bubble-message {
+  display: none;
+}
+
+/* Переконуємося, що мова форми правильна */
+form[lang="it"] input::placeholder,
+form[lang="it"] textarea::placeholder {
+  opacity: 1;
+}
+
+form[lang="en"] input::placeholder,
+form[lang="en"] textarea::placeholder {
+  opacity: 1;
+}/* Додаткові стилі для гарантування правильної мови відображення у формах */
+
+/* Глобальні стилі для гарантування, що браузер не має свого контролю над повідомленнями валідації */
+:invalid {
+  box-shadow: none !important;
+}
+
+:-moz-submit-invalid {
+  box-shadow: none !important;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none !important;
+}
+
+/* Приховування стандартних повідомлень валідації браузера */
+::-webkit-validation-bubble-message {
+  display: none !important;
+}
+
+::-webkit-validation-bubble {
+  display: none !important;
+}
+
+::-webkit-validation-bubble-arrow {
+  display: none !important;
+}
+
+::-webkit-validation-bubble-icon {
+  display: none !important;
+}
+
+::-webkit-validation-bubble-arrow-clipper {
+  display: none !important;
+}
+
+/* Стилі для власних повідомлень валідації */
+.validation-error {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 4px;
+  padding-left: 2px;
+  text-align: left;
+}
+
+/* Стилі для полів з помилками */
+.input-error {
+  border-color: #ff4d4d !important;
+  background-color: rgba(255, 0, 0, 0.03);
+}
+
+/* Переконуємося, що плейсхолдери мають правильну мову */
+[lang="it"] input::placeholder,
+[lang="it"] textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+[lang="en"] input::placeholder,
+[lang="en"] textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Змінюємо стиль кнопки відправки форми */
+.submit-button {
+  background-color: #00FF00;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 15px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #00CC00;
+}/* Стилі для повідомлень про помилки валідації */
+.validation-error {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+/* Стилі для полів з помилками */
+.input-error {
+  border-color: #ff4d4d !important;
+}
+
+/* Базові стилі для полів введення */
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #1a1a1f;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Стилі для кнопки надсилання */
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #00ff00;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.submit-button:hover {
+  background-color: #00e600;
+}
+
+/* Стилі для повідомлень про успіх/помилку */
+.success-message {
+  background-color: rgba(0, 255, 0, 0.1);
+  color: #00cc00;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.error-message {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: #ff4d4d;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}/* Додаткові стилі для примусового горизонтального відображення в ландшафтному режимі */
+/* Додайте цей код до вашого CSS файлу */
+
+/* Стилі для ландшафтної орієнтації на мобільних пристроях */
+@media (orientation: landscape) {
+  /* Контейнер для проектів */
+  #portfolio .landscape-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    width: 100% !important;
+  }
+
+  /* Блоки проектів */
+  #portfolio .landscape-project {
+    flex: 1 1 0 !important;
+    max-width: calc(33.333% - 10px) !important;
+    min-height: 120px !important;
+    padding: 15px !important;
+  }
+
+  /* Заголовки проектів */
+  #portfolio .landscape-project h3 {
+    font-size: 18px !important;
+  }
+
+  /* Приховуємо навігаційні стрілки */
+  #portfolio .navigation-arrows {
+    display: none !important;
+  }
+}
+
+/* Загальні стилі для плавного переходу між орієнтаціями */
+#portfolio .project-container {
+  transition: all 0.3s ease-in-out;
+}
+
+#portfolio .project-title {
+  transition: font-size 0.3s ease-in-out;
+}
+
+/* Стилі для запобігання проблем з відображенням на різних пристроях */
+#portfolio {
+  overflow-x: hidden;
+  width: 100%;
 }

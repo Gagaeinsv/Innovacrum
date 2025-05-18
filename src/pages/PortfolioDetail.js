@@ -1,9 +1,8 @@
 // src/pages/PortfolioDetail.js
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-// Removed unused 'translations' import
+import MobilePortfolioDetail from './MobilePortfolioDetail';
+import useResponsiveDetect from '../hooks/useResponsiveDetect';
 
 // Список всіх проектів для навігації
 const portfolioProjects = [
@@ -14,9 +13,9 @@ const portfolioProjects = [
 ];
 
 const PortfolioDetail = ({ lang, toggleLanguage }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const { projectId } = useParams();
   const navigate = useNavigate();
+  const { isMobile } = useResponsiveDetect();
   
   // Функція для переходу до наступного проекту
   const goToNextProject = () => {
@@ -134,55 +133,56 @@ const PortfolioDetail = ({ lang, toggleLanguage }) => {
     document.title = lang === 'en' ? 'Edilitalia Project - Matteo' : 'Progetto Edilitalia - Matteo';
   }, [lang]);
 
-  return (
-    <div className="App">
-      <Header 
+  if (isMobile) {
+    return (
+      <MobilePortfolioDetail 
+        projectData={edilitaliaCaseStudy[lang]} 
         lang={lang} 
-        toggleLanguage={toggleLanguage} 
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
+        goToNextProject={goToNextProject}
       />
-      <main>
-        <section className="section portfolio-detail-section">
-          <div className="container portfolio-detail-container">
-            <h1 className="portfolio-detail-title">
-              {edilitaliaCaseStudy[lang].title}
-            </h1>
-            
-            <div className="portfolio-detail-subtitle">
-              <h2>{edilitaliaCaseStudy[lang].subtitle}</h2>
-            </div>
-            
-            <div className="portfolio-detail-content">
-              {edilitaliaCaseStudy[lang].sections.map((section, index) => (
-                <div key={index} className="portfolio-detail-section">
-                  <h3 className="portfolio-detail-section-title">{section.title}</h3>
-                  
-                  {section.content && (
-                    <p className="portfolio-detail-section-content">{section.content}</p>
-                  )}
-                  
-                  {section.bulletPoints && (
-                    <ul className="portfolio-detail-bullet-list">
-                      {section.bulletPoints.map((point, pointIndex) => (
-                        <li key={pointIndex} className="portfolio-detail-bullet-item">{point}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-            </div>
-            
-            {/* Кнопка Next */}
-            <div className="portfolio-navigation">
-              <button className="portfolio-next-button" onClick={goToNextProject}>
-                {lang === 'en' ? 'Next Project' : 'Progetto Successivo'} →
-              </button>
-            </div>
+    );
+  }
+
+  return (
+    <div className="portfolio-detail-page">
+      <section className="section portfolio-detail-section">
+        <div className="container portfolio-detail-container">
+          <h1 className="portfolio-detail-title">
+            {edilitaliaCaseStudy[lang].title}
+          </h1>
+          
+          <div className="portfolio-detail-subtitle">
+            <h2>{edilitaliaCaseStudy[lang].subtitle}</h2>
           </div>
-        </section>
-      </main>
-      <Footer lang={lang} />
+          
+          <div className="portfolio-detail-content">
+            {edilitaliaCaseStudy[lang].sections.map((section, index) => (
+              <div key={index} className="portfolio-detail-section">
+                <h3 className="portfolio-detail-section-title">{section.title}</h3>
+                
+                {section.content && (
+                  <p className="portfolio-detail-section-content">{section.content}</p>
+                )}
+                
+                {section.bulletPoints && (
+                  <ul className="portfolio-detail-bullet-list">
+                    {section.bulletPoints.map((point, pointIndex) => (
+                      <li key={pointIndex} className="portfolio-detail-bullet-item">{point}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+          
+          {/* Кнопка Next */}
+          <div className="portfolio-navigation">
+            <button className="portfolio-next-button" onClick={goToNextProject}>
+              {lang === 'en' ? 'Next Project' : 'Progetto Successivo'} →
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -1,0 +1,44 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_sections",
+  "info": {
+    "singularName": "home-section",
+    "pluralName": "home-sections",
+    "displayName": "Home Section",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Role": {
+      "type": "string",
+      "required": true
+    },
+    "CTAButtonText": {
+      "type": "string"
+    },
+    "CTAButtonURL": {
+      "type": "string"
+    },
+    "ProfileImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Mission": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

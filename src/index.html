@@ -6,12 +6,58 @@
   <title>Matteo | Project Manager</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  
+  <!-- Додані стилі для адаптивного відображення портфоліо -->
+  <style>
+  /* Стилі для адаптивного відображення portfolio */
+  @media (orientation: portrait) {
+    .portfolio-card-left, .portfolio-card-right {
+      display: none !important;
+    }
+    
+    .portfolio-card-center {
+      display: block !important;
+    }
+  }
+  
+  @media (orientation: landscape) {
+    .portfolio-carousel {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 15px !important;
+    }
+    
+    .portfolio-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px !important;
+      border-radius: 8px !important;
+      position: relative !important;
+      text-align: center !important;
+      flex: 1 !important;
+      min-height: 100px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+    
+    .portfolio-card-left, .portfolio-card-right {
+      display: block !important;
+    }
+    
+    .carousel-nav {
+      flex: 0 0 auto !important;
+    }
+  }
+  </style>
 </head>
 <body>
   <!-- Header -->
   <header class="header">
     <div class="header-left">
-      <a href="#" class="home-icon">
+      <a href="#" class="home-icon" title="Home">
+        <span class="visually-hidden">Home</span>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M12 2L1 12h3v9h6v-6h4v6h6v-9h3L12 2z"/>
         </svg>
@@ -95,18 +141,31 @@
       </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Portfolio Section - Модифікована для адаптивного відображення -->
     <section class="section portfolio-section" id="portfolio">
       <h2>PORTFOLIO</h2>
       
       <div class="portfolio-carousel">
-        <button class="carousel-nav carousel-prev">
+        <button class="carousel-nav carousel-prev" title="Previous project" aria-label="Previous project">
+          <span class="visually-hidden">Previous</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
           </svg>
         </button>
         
-        <div class="portfolio-card">
+        <!-- Ліва картка (прихована в портретному режимі) -->
+        <div class="portfolio-card portfolio-card-left" style="display: none;">
+          <h3>PROJECT 1</h3>
+          <a href="#" class="see-more-link">
+            See more
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Центральна картка (завжди видима) -->
+        <div class="portfolio-card portfolio-card-center">
           <h3>EDILITALIA PROJECT</h3>
           <a href="#" class="see-more-link">
             See more
@@ -116,7 +175,19 @@
           </a>
         </div>
         
-        <button class="carousel-nav carousel-next">
+        <!-- Права картка (прихована в портретному режимі) -->
+        <div class="portfolio-card portfolio-card-right" style="display: none;">
+          <h3>PROJECT 2</h3>
+          <a href="#" class="see-more-link">
+            See more
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        
+        <button class="carousel-nav carousel-next" title="Next project" aria-label="Next project">
+          <span class="visually-hidden">Next</span>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
           </svg>
@@ -256,7 +327,7 @@
     <p>© 2025 by Sinergia. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript для мобільного меню -->
+  <!-- JavaScript для мобільного меню та орієнтації екрану -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -279,18 +350,48 @@
         navLinks.classList.toggle('active');
         this.classList.toggle('open');
       });
-    });
-    
-    // Перемикач мов
-    document.querySelector('.lang-toggle').addEventListener('click', function() {
-      const thumb = document.querySelector('.lang-thumb');
-      const labels = document.querySelectorAll('.lang-label');
       
-      thumb.classList.toggle('thumb-left');
-      thumb.classList.toggle('thumb-right');
+      // Перемикач мов
+      document.querySelector('.lang-toggle').addEventListener('click', function() {
+        const thumb = document.querySelector('.lang-thumb');
+        const labels = document.querySelectorAll('.lang-label');
+        
+        thumb.classList.toggle('thumb-left');
+        thumb.classList.toggle('thumb-right');
+        
+        labels[0].classList.toggle('active');
+        labels[1].classList.toggle('active');
+      });
       
-      labels[0].classList.toggle('active');
-      labels[1].classList.toggle('active');
+      // Функція для перевірки орієнтації екрану
+      function checkOrientation() {
+        var isLandscape = window.innerWidth > window.innerHeight;
+        
+        // Отримуємо елементи карток портфоліо
+        var leftCard = document.querySelector('.portfolio-card-left');
+        var centerCard = document.querySelector('.portfolio-card-center');
+        var rightCard = document.querySelector('.portfolio-card-right');
+        
+        // Показуємо або приховуємо картки залежно від орієнтації
+        if (isLandscape) {
+          if (leftCard) leftCard.style.display = 'block';
+          if (rightCard) rightCard.style.display = 'block';
+        } else {
+          if (leftCard) leftCard.style.display = 'none';
+          if (rightCard) rightCard.style.display = 'none';
+        }
+      }
+      
+      // Перевіряємо орієнтацію при завантаженні сторінки
+      checkOrientation();
+      
+      // Перевіряємо орієнтацію при зміні розміру вікна
+      window.addEventListener('resize', checkOrientation);
+      
+      // Перевіряємо орієнтацію при зміні орієнтації пристрою
+      window.addEventListener('orientationchange', function() {
+        setTimeout(checkOrientation, 200); // Невелика затримка для стабільності
+      });
     });
   </script>
 </body>

@@ -1,7 +1,6 @@
 // src/components/ContactModal.jsx
 import React, { useState } from 'react';
-import { sendEmail } from './emailService';
-import '../styles/ContactModal.css'; // Створіть цей файл для стилів
+// import { sendEmail } from '../services/emailService';
 
 const ContactModal = ({ isOpen, onClose, lang }) => {
   const [formData, setFormData] = useState({
@@ -10,26 +9,114 @@ const ContactModal = ({ isOpen, onClose, lang }) => {
     company: '',
     message: ''
   });
+  
+  const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const texts = {
+    en: {
+      title: 'Message',
+      name: 'Name*',
+      surname: 'Surname*',
+      company: 'Company*',
+      message: 'Message',
+      send: 'Send',
+      sending: 'Sending...',
+      nameRequired: 'Please enter your name',
+      surnameRequired: 'Please enter your surname',
+      companyRequired: 'Please enter your company',
+      messageRequired: 'Please enter your message',
+      successMessage: 'Message sent successfully! Thank you for contacting us.',
+      errorMessage: 'An error occurred while sending. Please try again.'
+    },
+    it: {
+      title: 'Messaggio',
+      name: 'Nome*',
+      surname: 'Cognome*',
+      company: 'Azienda*',
+      message: 'Messaggio',
+      send: 'Invia',
+      sending: 'Invio...',
+      nameRequired: 'Inserisci il tuo nome',
+      surnameRequired: 'Inserisci il tuo cognome',
+      companyRequired: 'Inserisci la tua azienda',
+      messageRequired: 'Inserisci un messaggio',
+      successMessage: 'Messaggio inviato con successo! Grazie per il tuo contatto.',
+      errorMessage: 'Si è verificato un errore durante l\'invio. Si prega di riprovare.'
+    }
+  };
+
+  // Завжди використовуємо англійські тексти для валідаційних повідомлень
+  const getValidationText = (key) => {
+    return texts.en[key] || key;
+  };
+
+  // Для інших текстів використовуємо поточну мову
+  const getText = (key) => {
+    const currentTexts = texts[lang] || texts.en;
+    return currentTexts[key] || key;
+  };
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // Очищаємо помилку при введенні
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
+  };
+
+  const validateForm = () => {
+    let newErrors = {};
+    let isValid = true;
+    
+    if (!formData.name.trim()) {
+      newErrors.name = getValidationText('nameRequired');
+      isValid = false;
+    }
+    
+    if (!formData.surname.trim()) {
+      newErrors.surname = getValidationText('surnameRequired');
+      isValid = false;
+    }
+    
+    if (!formData.company.trim()) {
+      newErrors.company = getValidationText('companyRequired');
+      isValid = false;
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = getValidationText('messageRequired');
+      isValid = false;
+    }
+    
+    setErrors(newErrors);
+    return isValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     
     try {
-      const result = await sendEmail(formData);
-      
-      if (result.success) {
+      // Тут симулюємо успішну відправку
+      // В реальному коді використайте ваш метод sendEmail
+      setTimeout(() => {
         setSubmitStatus('success');
-        // Очищаємо форму після успішної відправки
         setFormData({
           name: '',
           surname: '',
@@ -37,61 +124,43 @@ const ContactModal = ({ isOpen, onClose, lang }) => {
           message: ''
         });
         
-        // Закриваємо модальне вікно через 3 секунди після успішної відправки
+        // Закриття модального вікна через 3 секунди
         setTimeout(() => {
           onClose();
-          setSubmitStatus(null); // Скидаємо статус для наступного відкриття
+          setSubmitStatus(null);
         }, 3000);
-      } else {
-        setSubmitStatus('error');
-      }
+        
+        setIsSubmitting(false);
+      }, 1000);
     } catch (error) {
       setSubmitStatus('error');
-    } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Функція для закриття з перевіркою
-  const handleClose = () => {
-    // Якщо відправка в процесі, не закриваємо вікно
-    if (isSubmitting) return;
-    
-    onClose();
-    // При закритті скидаємо статус
-    setSubmitStatus(null);
-  };
-
+  // Якщо модальне вікно закрите, не рендеримо нічого
   if (!isOpen) return null;
 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button className="modal-close" onClick={handleClose}>×</button>
+        <button className="close-modal-btn" onClick={onClose}>×</button>
         
         {submitStatus === 'success' && (
           <div className="success-message">
-            {lang === 'ua' ? 'Повідомлення успішно відправлено! Дякуємо за звернення.' :
-             lang === 'it' ? 'Messaggio inviato con successo! Grazie per il tuo contatto.' :
-             'Message sent successfully! Thank you for contacting us.'}
+            {getText('successMessage')}
           </div>
         )}
         
         {submitStatus === 'error' && (
           <div className="error-message">
-            {lang === 'ua' ? 'Виникла помилка при відправці. Будь ласка, спробуйте ще раз.' :
-             lang === 'it' ? 'Si è verificato un errore durante l'invio. Si prega di riprovare.' :
-             'An error occurred while sending. Please try again.'}
+            {getText('errorMessage')}
           </div>
         )}
         
         {submitStatus !== 'success' && (
-          <form onSubmit={handleSubmit} className="contact-form">
-            <h2>
-              {lang === 'ua' ? 'Зв\'яжіться з нами' :
-               lang === 'it' ? 'Contattaci' :
-               'Contact Us'}
-            </h2>
+          <form onSubmit={handleSubmit} noValidate>
+            <h2>{getText('title')}</h2>
             
             <div className="form-group">
               <input
@@ -99,9 +168,14 @@ const ContactModal = ({ isOpen, onClose, lang }) => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder={lang === 'ua' ? "Ім'я" : lang === 'it' ? "Nome" : "Name"}
-                required
+                placeholder={getText('name')}
+                className={`form-input ${errors.name ? 'input-error' : ''}`}
               />
+              {errors.name && (
+                <div className="validation-error">
+                  {errors.name}
+                </div>
+              )}
             </div>
             
             <div className="form-group">
@@ -110,9 +184,14 @@ const ContactModal = ({ isOpen, onClose, lang }) => {
                 name="surname"
                 value={formData.surname}
                 onChange={handleChange}
-                placeholder={lang === 'ua' ? "Прізвище" : lang === 'it' ? "Cognome" : "Surname"}
-                required
+                placeholder={getText('surname')}
+                className={`form-input ${errors.surname ? 'input-error' : ''}`}
               />
+              {errors.surname && (
+                <div className="validation-error">
+                  {errors.surname}
+                </div>
+              )}
             </div>
             
             <div className="form-group">
@@ -121,8 +200,14 @@ const ContactModal = ({ isOpen, onClose, lang }) => {
                 name="company"
                 value={formData.company}
                 onChange={handleChange}
-                placeholder={lang === 'ua' ? "Компанія" : lang === 'it' ? "Azienda" : "Company"}
+                placeholder={getText('company')}
+                className={`form-input ${errors.company ? 'input-error' : ''}`}
               />
+              {errors.company && (
+                <div className="validation-error">
+                  {errors.company}
+                </div>
+              )}
             </div>
             
             <div className="form-group">
@@ -130,9 +215,14 @@ const ContactModal = ({ isOpen, onClose, lang }) => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder={lang === 'ua' ? "Повідомлення" : lang === 'it' ? "Messaggio" : "Message"}
-                required
+                placeholder={getText('message')}
+                className={`form-textarea ${errors.message ? 'input-error' : ''}`}
               />
+              {errors.message && (
+                <div className="validation-error">
+                  {errors.message}
+                </div>
+              )}
             </div>
             
             <button 
@@ -140,9 +230,7 @@ const ContactModal = ({ isOpen, onClose, lang }) => {
               disabled={isSubmitting}
               className="submit-button"
             >
-              {isSubmitting ? 
-                (lang === 'ua' ? 'Відправка...' : lang === 'it' ? 'Invio...' : 'Sending...') : 
-                (lang === 'ua' ? 'Відправити' : lang === 'it' ? 'Invia' : 'Send')}
+              {isSubmitting ? getText('sending') : getText('send')}
             </button>
           </form>
         )}

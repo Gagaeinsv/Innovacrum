@@ -1,26 +1,30 @@
 // src/App.js
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Manifesto from './pages/Manifesto';
 import PortfolioDetail from './pages/PortfolioDetail';
-import ScrollToTop from './components/ScrollToTop'; // Компонент для скидання прокрутки при навігації
-import ScrollUpButton from './components/ScrollUpButton'; // Компонент для кнопки прокрутки вгору
-import Header from './components/Header'; // Додаємо імпорт хедера
+import ScrollToTop from './components/ScrollToTop';
+import ScrollUpButton from './components/ScrollUpButton';
+import Navigation from './components/Navigation'; // Імпортуємо новий компонент навігації
+import Footer from './components/Footer';
+import useResponsiveDetect from './hooks/useResponsiveDetect';
 import './styles.css';
+import './MobileStyles.css';
+
+// Імпорт компонентів для адмін-панелі
+import Login from './components/admin/Login';
+import Dashboard from './components/admin/Dashboard';
+import { useAuth } from './hooks/useAuth';
 
 // Компонент для обробки якорів
 function ScrollToAnchor() {
   const location = useLocation();
   
-  useEffect(() => {
-    // Якщо є хеш в URL
+  React.useEffect(() => {
     if (location.hash) {
-      // Отримуємо елемент за ID (без символу #)
       const element = document.getElementById(location.hash.substring(1));
-      
       if (element) {
-        // Прокручуємо до елемента
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
@@ -29,18 +33,32 @@ function ScrollToAnchor() {
   return null;
 }
 
-// Компонент-обгортка, який включає Header для всіх сторінок
-function Layout({ children, lang, toggleLanguage }) {
-  return (
-    <>
-      <Header lang={lang} toggleLanguage={toggleLanguage} />
-      {children}
-    </>
-  );
+// Компонент для захисту адмін-маршрутів
+function PrivateRoute({ element, ...props }) {
+  const { user, loading } = useAuth();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const lang = queryParams.get('lang') || 'en';
+  
+  if (loading) {
+    const loadingText = lang === 'en' ? 'Loading...' : 'Caricamento...';
+    return <div className="loading">{loadingText}</div>;
+  }
+  
+  if (!user) {
+    return <Navigate to={`/admin?lang=${lang}`} replace />;
+  }
+  
+  if (user.email !== 'shermatte@tuta.io') {
+    return <Navigate to={`/admin?lang=${lang}`} replace />;
+  }
+  
+  return React.cloneElement(element, { ...props, lang });
 }
 
 function App() {
   const [lang, setLang] = useState('en');
+  const { isMobile } = useResponsiveDetect();
   
   const toggleLanguage = () => {
     setLang(prevLang => prevLang === 'en' ? 'it' : 'en');
@@ -51,33 +69,42 @@ function App() {
       <ScrollToTop />
       <ScrollToAnchor />
       
-      <Routes>
-        <Route 
-          path="/" 
-          element={
-            <Layout lang={lang} toggleLanguage={toggleLanguage}>
-              <Home lang={lang} toggleLanguage={toggleLanguage} />
-            </Layout>
-          } 
+      <div className={`app-container ${isMobile ? 'mobile-app' : ''}`}>
+        {/* Використовуємо єдиний компонент Navigation для обох версій */}
+        <Navigation 
+          isMobile={isMobile} 
+          lang={lang} 
+          toggleLanguage={toggleLanguage} 
         />
-        <Route 
-          path="/manifesto" 
-          element={
-            <Layout lang={lang} toggleLanguage={toggleLanguage}>
-              <Manifesto lang={lang} toggleLanguage={toggleLanguage} />
-            </Layout>
-          } 
-        />
-        <Route path="/portfolio" element={<Navigate to="/portfolio/edilitalia" replace />} />
-        <Route 
-          path="/portfolio/:projectId" 
-          element={
-            <Layout lang={lang} toggleLanguage={toggleLanguage}>
-              <PortfolioDetail lang={lang} toggleLanguage={toggleLanguage} />
-            </Layout>
-          } 
-        />
-      </Routes>
+        
+        <main className={isMobile ? 'mobile-main' : 'desktop-main'}>
+          <Routes>
+            <Route 
+              path="/" 
+              element={<Home lang={lang} toggleLanguage={toggleLanguage} isMobile={isMobile} />} 
+            />
+            
+            <Route 
+              path="/manifesto" 
+              element={<Manifesto lang={lang} toggleLanguage={toggleLanguage} />} 
+            />
+            
+            <Route 
+              path="/portfolio/:projectId" 
+              element={<PortfolioDetail lang={lang} toggleLanguage={toggleLanguage} />}
+            />
+            
+            <Route path="/about" element={<Navigate to={isMobile ? "/#about" : "/#about"} replace />} />
+            <Route path="/portfolio" element={<Navigate to={isMobile ? "/#portfolio" : "/portfolio/edilitalia"} replace />} />
+            <Route path="/contacts" element={<Navigate to={isMobile ? "/#contacts" : "/#contact"} replace />} />
+            
+            <Route path="/admin" element={<Login />} />
+            <Route path="/admin/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
+          </Routes>
+        </main>
+        
+        <Footer lang={lang} />
+      </div>
       
       <ScrollUpButton />
     </BrowserRouter>

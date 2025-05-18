@@ -1,108 +1,110 @@
-// src/components/Manifesto.js
-import React, { useState, useEffect } from 'react';
+// src/pages/Manifesto.js
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Manifesto = ({ lang }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Відстеження ширини екрану для адаптивності
-  useEffect(() => {
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    
-    return () => {
-      window.removeEventListener('resize', checkIsMobile);
-    };
-  }, []);
-
-  // Дані для відображення
-  const manifestoData = {
+const Manifesto = ({ lang, toggleLanguage }) => {
+  // Переклади текстів в залежності від мови
+  const texts = {
     en: {
-      title: 'INNOVACRUM MANIFESTO',
-      subtitle: 'Toward a New Authentic Meaning of Innovation',
-      sections: [
-        {
-          title: 'BEYOND REFLECTION, TOWARD AUTHENTICITY',
-          content: 'Our contemporary world is inundated with "mirrors" and representations that often lose their connection to reality. At Innovacrum, we believe that innovation should not be confined to a play of reflections or mere self-referential simulacra. Instead, it must serve to break these mirrors and reconnect with the most profound human needs.'
-        },
-        {
-          title: 'ACKNOWLEDGING THE POWER OF THE SIMULACRUM',
-          content: 'We recognize that, today, signs seem to have a life of their own, generating hyperreality in which it becomes difficult to distinguish between what is real and what is not. Innovacrum embraces this awareness not to surrender but to use it as a springboard for (re)discovery: harnessing the power of simulacra to create something truly new, invested with a higher sense of purpose.'
-        },
-        {
-          title: 'INNOVATION AS A CULTURAL ACT',
-          content: 'For us, innovation is not merely about technology; it is living culture. It is the ability to unite vision and understanding to drive tangible transformations in our habits, behaviors, and institutions. To innovate means to grasp the present and to imagine the future, without losing sight of human dignity and of the essential needs of those who will follow us.'
-        },
-        {
-          title: 'BREAKING MIRRORS AS A CREATIVE ACT',
-          content: 'Breaking mirrors does not mean destroying the world of images but rather redefining it. It means going beyond the simple fascination with hyperreality to bring forth signs that reflect a deep, genuine, and collective need. This is an act of courage that entails responsibility and care for one another.'
-        },
-        {
-          title: 'A NEW ORDER OF SIGNS',
-          content: 'Innovacrum aspires to build a new symbolic framework where the pursuit of meaning is paramount. Our aim is to create products, services, experiences, and narratives that are not empty aesthetic exercises but forms of language capable of meeting—and even anticipating—the real needs of individuals and communities.'
-        },
-        {
-          title: 'ETHICS AND SOCIAL RESPONSIBILITY',
-          content: 'Innovation must take responsibility for its consequences. We believe that this "new order of signs" can only emerge if we consider collective well-being, environmental protection, and the promotion of an inclusive culture. Every innovative step must be contemplated in terms of impact and shared value.'
-        },
-        {
-          title: 'KNOWLEDGE AS A MEANS TO CREATE',
-          content: 'Innovacrum is grounded in active knowledge: studying, observing, and engaging with those who already experiment with new forms of innovation; but also putting bold ideas into practice, prototyping them, and sharing the results. Knowledge is not a sterile accumulation but a tool for generating new worlds, new "thinking rooms" where we can collectively envision solutions.'
-        },
-        {
-          title: 'FROM HYPERREALITY TO THE TRUTH OF HUMANITY',
-          content: 'Our objective is not to stage a more captivating or seductive "hyperreality," but to restore depth to what is real by delving into the essential needs of the human being—such as empathy, respect, cultural growth, and communal well-being. In this way, innovation ceases to be a detached dream and becomes a path of human evolution.'
-        },
-        {
-          title: 'COLLABORATION AND CO-CREATION',
-          content: 'We invite anyone who shares this quest for meaning to join us. Innovacrum is open, inclusive, and strongly believes in teamwork: together, we can develop practices, languages, tools, and methodologies that bring us closer to this "new authentic," surpassing the barriers of fragmentation and fruitless competition.'
-        },
-        {
-          title: 'TOWARD A FUTURE OF MEANING',
-          content: 'The future we envision is not merely a more "comfortable" world in material terms but one in which innovation is synonymous with cultural responsibility, where people feel like protagonists of change rather than mere onlookers. Breaking mirrors also means having the courage to look beyond illusions, recognizing within ourselves the power to make a difference.'
-        }
+      title: "MANIFESTO",
+      subtitle: "Toward a New Authentic Meaning of Innovation",
+      content: [
+        "In an era characterized by rapid technological advancements and the constant quest for innovation, we often lose sight of what innovation truly means. Innovation isn't just about creating something new—it's about creating something meaningful, something that addresses real human needs and brings tangible value.",
+        "At its core, innovation should be authentic. It should emerge from a deep understanding of the problem space, a genuine desire to improve the human condition, and a commitment to creating sustainable solutions that stand the test of time.",
+        "The new paradigm of innovation that I advocate for centers around three key principles:",
+        "1. Human-Centered Design: Innovation must begin and end with the human experience. It should prioritize the needs, behaviors, and contexts of the people it serves, ensuring that technological advancements enhance rather than complicate human life.",
+        "2. Sustainable Impact: True innovation considers its long-term impact on society, the economy, and the environment. It aims not just for immediate gains but for enduring positive change that benefits current and future generations.",
+        "3. Collaborative Creation: The most powerful innovations emerge from diverse perspectives and collaborative efforts. By bringing together different disciplines, backgrounds, and viewpoints, we can create solutions that are more robust, inclusive, and effective.",
+        "This manifesto calls for a return to authenticity in innovation—a movement away from the allure of novelty for its own sake and toward meaningful progress that enriches lives and addresses real-world challenges.",
+        "Let us innovate not because we can, but because we should. Let us create not for the sake of creation, but for the betterment of humanity. Let us pursue not just what is new, but what is necessary."
       ],
-      footer: 'With Innovacrum, we assert our right (and duty) to shape a reality that does not simply reproduce old models but dares to create new meanings, new languages, and a new shared ethic. For an innovation that, beyond being "new," is both true and human.'
+      backToHome: "Back to Home"
     },
     it: {
-      title: 'MANIFESTO INNOVACRUM',
-      subtitle: 'Verso un Nuovo Significato Autentico dell\'Innovazione',
-      sections: [
-        {
-          title: 'OLTRE IL RIFLESSO, VERSO L\'AUTENTICITÀ',
-          content: 'Il nostro mondo contemporaneo è inondato di "specchi" e rappresentazioni che spesso perdono il loro legame con la realtà. In Innovacrum, crediamo che l\'innovazione non debba limitarsi a un gioco di riflessi o a meri simulacri autoreferenziali. Al contrario, deve servire a rompere questi specchi e riconnettersi con i bisogni umani più profondi.'
-        },
-        // Додайте інші розділи італійською мовою...
+      title: "MANIFESTO",
+      subtitle: "Verso un Nuovo Significato Autentico dell'Innovazione",
+      content: [
+        "In un'era caratterizzata da rapidi progressi tecnologici e dalla costante ricerca dell'innovazione, spesso perdiamo di vista ciò che l'innovazione significa veramente. L'innovazione non consiste solo nel creare qualcosa di nuovo, ma nel creare qualcosa di significativo, che risponda ai reali bisogni umani e apporti un valore tangibile.",
+        "Nel suo nucleo, l'innovazione dovrebbe essere autentica. Dovrebbe emergere da una profonda comprensione dello spazio problematico, da un genuino desiderio di migliorare la condizione umana e da un impegno a creare soluzioni sostenibili che resistano alla prova del tempo.",
+        "Il nuovo paradigma dell'innovazione che sostengo si centra su tre principi chiave:",
+        "1. Design Centrato sull'Uomo: L'innovazione deve iniziare e terminare con l'esperienza umana. Dovrebbe dare priorità alle esigenze, ai comportamenti e ai contesti delle persone che serve, garantendo che i progressi tecnologici migliorino anziché complicare la vita umana.",
+        "2. Impatto Sostenibile: La vera innovazione considera il suo impatto a lungo termine sulla società, sull'economia e sull'ambiente. Mira non solo a guadagni immediati, ma a un cambiamento positivo duraturo che benefici le generazioni attuali e future.",
+        "3. Creazione Collaborativa: Le innovazioni più potenti emergono da prospettive diverse e sforzi collaborativi. Unendo discipline, background e punti di vista diversi, possiamo creare soluzioni più robuste, inclusive ed efficaci.",
+        "Questo manifesto chiede un ritorno all'autenticità nell'innovazione—un movimento lontano dal fascino della novità fine a se stessa e verso un progresso significativo che arricchisce le vite e affronta le sfide del mondo reale.",
+        "Innoviamo non perché possiamo, ma perché dovremmo. Creiamo non per il gusto della creazione, ma per il miglioramento dell'umanità. Perseguiamo non solo ciò che è nuovo, ma ciò che è necessario."
       ],
-      footer: 'Con Innovacrum, affermiamo il nostro diritto (e dovere) di plasmare una realtà che non si limiti a riprodurre vecchi modelli, ma osi creare nuovi significati, nuovi linguaggi e una nuova etica condivisa. Per un\'innovazione che, oltre ad essere "nuova", sia vera e umana.'
+      backToHome: "Torna alla Home"
     }
   };
-
-  // Використовуємо англійську мову як запасну
-  const currentLangData = manifestoData[lang] || manifestoData.en;
-
+  
+  // Вибір текстів відповідно до мови
+  const t = texts[lang] || texts.en;
+  
   return (
-    <div className="manifesto-page">
-      <div className="manifesto-container">
-        <h1 className="manifesto-title">{currentLangData.title}</h1>
-        <h2 className="manifesto-subtitle">{currentLangData.subtitle}</h2>
-        
-        {currentLangData.sections && currentLangData.sections.map((section, index) => (
-          <div key={index} className="manifesto-section">
-            <h3 className="manifesto-section-title">{section.title}</h3>
-            <p className="manifesto-section-content">{section.content}</p>
-          </div>
+    <div style={{
+      backgroundColor: '#121212',
+      minHeight: '100vh',
+      color: 'white',
+      padding: '16px'
+    }}>
+      {/* Заголовок */}
+      <h1 style={{
+        color: '#0f0',
+        fontSize: '28px',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: '16px',
+        marginTop: '40px',
+        textTransform: 'uppercase'
+      }}>
+        {t.title}
+      </h1>
+      
+      {/* Підзаголовок */}
+      <h2 style={{
+        color: 'white',
+        fontSize: '18px',
+        textAlign: 'center',
+        marginBottom: '32px'
+      }}>
+        {t.subtitle}
+      </h2>
+      
+      {/* Основний контент */}
+      <div style={{
+        marginBottom: '40px'
+      }}>
+        {t.content.map((paragraph, index) => (
+          <p key={index} style={{
+            fontSize: '16px',
+            lineHeight: '1.6',
+            marginBottom: '16px',
+            textAlign: 'justify'
+          }}>
+            {paragraph}
+          </p>
         ))}
-        
-        <p className="manifesto-footer">{currentLangData.footer}</p>
-        
-        <div className="manifesto-copyright">
-          © {new Date().getFullYear()} Synergia. All rights reserved.
-        </div>
       </div>
+      
+      {/* Кнопка повернення на головну */}
+      <Link 
+        to="/" 
+        style={{
+          display: 'block',
+          width: '100%',
+          backgroundColor: '#0f0',
+          color: 'black',
+          padding: '12px 0',
+          textAlign: 'center',
+          borderRadius: '4px',
+          textDecoration: 'none',
+          fontWeight: 'bold',
+          fontSize: '14px',
+          marginBottom: '40px'
+        }}
+      >
+        {t.backToHome}
+      </Link>
     </div>
   );
 };

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_sections_manifesto_sections",
+  "info": {
+    "displayName": "Manifesto Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

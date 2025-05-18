@@ -1,0 +1,94 @@
+/* src/components/MobilePortfolioDetail.css */
+
+.mobile-portfolio-detail {
+  padding: 20px;
+  color: white;
+  background-color: #1e1e1e;
+  position: relative;
+  padding-bottom: 80px; /* Додатковий відступ знизу для кнопки навігації */
+}
+
+.mobile-portfolio-detail-title {
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.mobile-portfolio-detail-subtitle h2 {
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+.mobile-portfolio-detail-section {
+  margin-bottom: 30px;
+}
+
+.mobile-portfolio-detail-section-title {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.mobile-portfolio-detail-section-content {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Стилі для списку з маркерами */
+.mobile-portfolio-detail-bullet-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.mobile-portfolio-detail-bullet-item {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.mobile-portfolio-detail-bullet-item:before {
+  content: "•";
+  color: #00ff00; /* Зелений колір для маркерів */
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Стилі для фіксованої навігації */
+.mobile-portfolio-fixed-navigation {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100; /* Забезпечуємо, що кнопка буде поверх інших елементів */
+}
+
+/* Стиль для кнопки Next Project у нижньому правому куті */
+.mobile-portfolio-next-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #00ff00;
+  color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  font-size: 0; /* Приховуємо текст */
+  position: relative;
+}
+
+.mobile-portfolio-next-button:after {
+  content: "→";
+  font-size: 20px;
+  display: block;
+}

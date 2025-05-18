@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_manifesto_sections",
+  "info": {
+    "displayName": "Manifesto Section"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "richtext"
+    }
+  }
+}

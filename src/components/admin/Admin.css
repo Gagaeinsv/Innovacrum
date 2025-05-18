@@ -1,0 +1,356 @@
+/* src/components/admin/Admin.css */
+
+/* Загальні стилі */
+:root {
+    --primary-color: #00FF00;
+    --primary-dark: #00CC00;
+    --text-color: #ffffff;
+    --bg-color: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #232323;
+    --border-color: #333;
+    --error-color: #ff6b6b;
+    --success-color: #00CC00;
+  }
+  
+  /* Стилі для логіну */
+  .admin-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  .admin-login-form {
+    background-color: var(--bg-secondary);
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+  }
+  
+  .admin-login-form h2 {
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+  
+  button {
+    background-color: var(--primary-color);
+    color: #000000;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  
+  button:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  button:disabled {
+    background-color: #005500;
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: var(--error-color);
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .success-message {
+    color: var(--success-color);
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--primary-color);
+    font-size: 18px;
+  }
+  
+  /* Стилі для адмін-панелі */
+  .admin-dashboard {
+    display: flex;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  .admin-sidebar {
+    width: 250px;
+    background-color: var(--bg-secondary);
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+  }
+  
+  .admin-logo {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .admin-logo h2 {
+    color: var(--primary-color);
+    font-size: 22px;
+    margin: 0;
+  }
+  
+  .admin-nav {
+    flex: 1;
+    padding: 20px 0;
+  }
+  
+  .nav-item {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #cccccc;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .nav-item:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-color);
+  }
+  
+  .nav-item.active {
+    background-color: var(--bg-tertiary);
+    color: var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+  }
+  
+  .admin-sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .logout-button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--bg-tertiary);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-button:hover {
+    background-color: #444;
+  }
+  
+  .admin-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .admin-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .admin-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--text-color);
+  }
+  
+  .admin-content-area {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  /* Стилі для редакторів секцій */
+  .editor-container {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .editor-section {
+    margin-bottom: 30px;
+  }
+  
+  .editor-section h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+  }
+  
+  .form-control {
+    margin-bottom: 20px;
+  }
+  
+  .form-control label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .form-control input,
+  .form-control textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  
+  .form-control textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+  
+  .save-button {
+    background-color: var(--primary-color);
+    color: #000000;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .save-button:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  .save-button:disabled {
+    background-color: #005500;
+    cursor: not-allowed;
+  }
+  
+  /* Стилі для списків (навички, технології) */
+  .list-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .list-item {
+    background-color: var(--bg-tertiary);
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .list-item span {
+    color: var(--text-color);
+  }
+  
+  .remove-item-btn {
+    background: none;
+    border: none;
+    color: var(--error-color);
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    width: auto;
+  }
+  
+  .item-input {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .item-input input {
+    flex: 1;
+  }
+  
+  .add-item-btn {
+    background-color: var(--bg-tertiary);
+    color: var(--text-color);
+    width: auto;
+  }
+  
+  /* Стилі для завантаження зображень */
+  .image-upload {
+    margin-bottom: 20px;
+  }
+  
+  .image-preview {
+    margin-top: 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    max-height: 200px;
+    object-fit: cover;
+  }
+  
+  .upload-button {
+    background-color: var(--bg-tertiary);
+    color: var(--text-color);
+    margin-top: 10px;
+  }
+  
+  /* Адаптивні стилі */
+  @media (max-width: 768px) {
+    .admin-dashboard {
+      flex-direction: column;
+      height: auto;
+    }
+    
+    .admin-sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .admin-content {
+      height: calc(100vh - 200px);
+    }
+  }
